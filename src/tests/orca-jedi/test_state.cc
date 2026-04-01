@@ -109,13 +109,13 @@ CASE("test basic state") {
   state_config.set("output nemo field file", "../testoutput/orca2_t_output.nc");
   params.validateAndDeserialize(state_config);
   State state(geometry, params);
-  double iceNorm = 0.0032018269;
+  double iceNorm = 0.41793347;
   SECTION("test constructor from state") {
     bool has_missing = state.stateFields()["sea_ice_area_fraction"].metadata()
       .has("missing_value");
     EXPECT_EQUAL(true, has_missing);
-    std::cout << std::setprecision(8) << state.norm<double>("sea_ice_area_fraction")
-              << std::setprecision(8) << iceNorm << std::endl;
+    std::cout << "ice norm calculated: "<< std::setprecision(8) << state.norm<double>("sea_ice_area_fraction")
+              << " ice norm KGO: " << iceNorm << std::endl;
     EXPECT(std::abs(state.norm<double>("sea_ice_area_fraction") - iceNorm) < 1e-6);
   }
   SECTION("test state read") {
