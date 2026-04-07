@@ -109,7 +109,7 @@ CASE("test basic state") {
   state_config.set("output nemo field file", "../testoutput/orca2_t_output.nc");
   params.validateAndDeserialize(state_config);
   State state(geometry, params);
-  double iceNorm = 0.41793347;
+  const double iceNorm = 0.41793347;
   SECTION("test constructor from state") {
     bool has_missing = state.stateFields()["sea_ice_area_fraction"].metadata()
       .has("missing_value");
