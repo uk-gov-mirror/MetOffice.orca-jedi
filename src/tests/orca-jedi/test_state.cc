@@ -119,6 +119,13 @@ CASE("test basic state") {
               << " ice norm KGO: " << iceNorm << std::endl;
     EXPECT(std::abs(state.norm<double>("sea_ice_area_fraction") - iceNorm) < 1e-6);
   }
+  SECTION("test many runs of norm") {
+    int count = 0;
+    while(count < 1000) {
+      EXPECT(std::abs(state.norm<double>("sea_ice_area_fraction") - iceNorm) < 1e-6);
+      count++;
+    }
+  }
   SECTION("test state read") {
     state.read(params);
     EXPECT(std::abs(state.norm<double>("sea_ice_area_fraction") - iceNorm) < 1e-6);

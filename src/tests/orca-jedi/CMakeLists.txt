@@ -38,6 +38,8 @@ ecbuild_add_test( TARGET  orcajedi_geometry.x
 ecbuild_add_test( TARGET  orcajedi_state.x
                   SOURCES test_state.cc
                   ENVIRONMENT ${ATLAS_TEST_ENVIRONMENT}
+                  OMP     4
+                  CONDITION  eckit_HAVE_OMP
                   LIBS    orcamodel )
 
 ecbuild_add_test( TARGET  orcajedi_interpolator.x
